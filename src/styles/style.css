@@ -1,0 +1,6 @@
+/* 修改vant的input框样式 */
+
+.van-field__body input {
+    writing-mode: tb-rl;
+    text-align: right;
+}
