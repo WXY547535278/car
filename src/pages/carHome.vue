@@ -23,7 +23,9 @@
     <div class="navigations">
       <div class="nav"
            v-for="(item,index) in nav"
-           :key="index">{{ item }}</div>
+           :key="index"
+           :class="{ red: index == isActive}"
+           @click="changeColor(index)">{{ item }}</div>
     </div>
     <!-- 轮播图 -->
     <van-swipe :autoplay="3000"
@@ -129,7 +131,9 @@
         <div class="whiteBox">品质保障，值得选购</div>
       </div>
       <div class="models">
-        <div class="model" v-for="(item,index) in 6" :key="index">
+        <div class="model"
+             v-for="(item,index) in 6"
+             :key="index">
           <img src="../assets/img/car3.png"
                alt=""
                srcset="">
@@ -156,7 +160,10 @@
              srcset="">
       </div>
       <div class="redBorder">
-        <!-- <img src="../assets/img/car2.png" alt="" srcset=""> -->
+        <img src="../assets/img/car3.png"
+             alt=""
+             srcset="">
+        <span>&nbsp;&nbsp;&nbsp;&nbsp;{{ introduction }}</span>
       </div>
     </div>
     <!-- 新闻动态 -->
@@ -174,10 +181,34 @@
              srcset="">
       </div>
       <div class="redBorder">
+        <div class="newList" v-for="(item,index) in 6" :key="index">
+          <div class="left">
+            <span class="redBox">
+              <img src="../assets/img/triangle.png"
+                   alt="">
+            </span>
+            <span>二手车如何挑选发动机?</span>
+          </div>
+          <div class="right">[2019-10-22]</div>
+        </div>
       </div>
     </div>
     <redBgc></redBgc>
     <div class="bottom">东莞市鸿程汽车销售有限公司 © COPYRIGHT 2019</div>
+    <div class="fixedBottom">
+      <div class="fixed-box">
+        <img src="../assets/img/phone.png"
+             alt=""
+             srcset="">
+        <span>拨打电话</span>
+      </div>
+      <div class="fixed-box">
+        <img src="../assets/img/wechat.png"
+             alt=""
+             srcset="">
+        <span>复制微信号</span>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -194,11 +225,15 @@ export default {
         'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572673002624&di=f27b36af520cdc856115facef00ff460&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01c3f255456f4d0000019ae9507919.jpg%401280w_1l_2o_100sh.jpg',
         'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1572673018065&di=e28fba9b2e76c2ee71d50a3897a331f9&imgtype=0&src=http%3A%2F%2Fwww1.m.autoimg.cn%2Fnewspic%2F2013%2F12%2F10%2F640x0_0_q30_2013121014552116751.jpg',
         'http://img0.imgtn.bdimg.com/it/u=569933304,1379976702&fm=11&gp=0.jpg'
-      ]
+      ],
+      isActive: 0,
+      introduction: '东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司'
     }
   },
   methods: {
-
+    changeColor(index) {
+      this.isActive = index
+    }
   }
 }
 </script>
@@ -252,6 +287,9 @@ export default {
       font-size: 13px;
       border-left: 1px solid rgb(71, 70, 70);
       border-bottom: 1px solid rgb(71, 70, 70);
+    }
+    .red {
+      background-color: #dc0a1f;
     }
   }
   // 优势
@@ -314,7 +352,7 @@ export default {
         }
         .info {
           padding: 5px;
-          font-size: 10px;
+          font-size: 0.7rem;
           letter-spacing: 3px;
           line-height: 18px;
         }
@@ -450,7 +488,7 @@ export default {
       flex-wrap: wrap;
       justify-content: space-between;
       .model {
-        background-color: #DEDCDF;
+        background-color: #dedcdf;
         width: 48%;
         height: 160px;
         box-sizing: border-box;
@@ -517,9 +555,18 @@ export default {
       width: 100%;
       border-radius: 8px;
       overflow: hidden;
+      img {
+        height: 180px;
+        width: 100%;
+      }
+      span {
+        font-family: "Courier New", Courier, monospace;
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
     }
   }
-  // 公司简介
+  // 新闻动态
   .news {
     margin: 40px 0 40px 0;
     padding: 0 10px;
@@ -555,18 +602,76 @@ export default {
       width: 100%;
       border-radius: 8px;
       overflow: hidden;
+      .newList {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        margin-top: 10px;
+        .left {
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          .redBox {
+            display: block;
+            background-color: #dc0a1f;
+            height: 15px;
+            width: 15px;
+            position: relative;
+            margin-right: 8px;
+            img {
+              position: absolute;
+              left: 5px;
+              top: 4px;
+              width: 5px;
+              height: 8px;
+            }
+          }
+        }
+        .right {
+          font-family: 'Courier New', Courier, monospace;
+          color: #969595;
+        }
+      }
     }
   }
   // 底部
   .bottom {
-    background-color: #F7F7F7;
+    background-color: #f7f7f7;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #8B8B8B;
+    color: #8b8b8b;
     font-size: 13px;
     margin-bottom: 60px;
+  }
+  // 固定底部
+  .fixedBottom {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    display: flex;
+    background-color: white;
+    justify-content: space-between;
+    .fixed-box {
+      background-color: black;
+      width: 49.8%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      img {
+        width: 25px;
+        height: 20px;
+      }
+      span {
+        color: white;
+        font-size: 15px;
+      }
+    }
   }
 }
 </style>
