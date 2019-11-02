@@ -181,7 +181,9 @@
              srcset="">
       </div>
       <div class="redBorder">
-        <div class="newList" v-for="(item,index) in 6" :key="index">
+        <div class="newList"
+             v-for="(item,index) in 6"
+             :key="index">
           <div class="left">
             <span class="redBox">
               <img src="../assets/img/triangle.png"
@@ -202,7 +204,9 @@
              srcset="">
         <span>拨打电话</span>
       </div>
-      <div class="fixed-box">
+      <div class="fixed-box" 
+           @click="copy"
+           :data-clipboard-text="wechatNum">
         <img src="../assets/img/wechat.png"
              alt=""
              srcset="">
@@ -213,6 +217,7 @@
 </template>
 <script>
 import redBgc from '../components/redBgc'
+import Clipboard from 'clipboard'
 export default {
   components: {
     redBgc
@@ -227,12 +232,38 @@ export default {
         'http://img0.imgtn.bdimg.com/it/u=569933304,1379976702&fm=11&gp=0.jpg'
       ],
       isActive: 0,
+      wechatNum: '13592728882',
       introduction: '东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司东莞市鸿程汽车销售有限公司'
     }
   },
   methods: {
-    changeColor(index) {
+    // 改变导航栏颜色
+    changeColor (index) {
       this.isActive = index
+    },
+    //  复制功能
+    copy () {
+      var clipboard = new Clipboard('.fixed-box')
+      clipboard.on('success', e => {
+        console.log('复制成功', e)
+        this.$dialog.alert({
+          title: '复制成功',
+          message: '已复制，请在微信粘贴中使用'
+        }).then(() => {
+          // on close
+        })
+        // 释放内存
+        clipboard.destroy()
+      })
+      clipboard.on('error', e => {
+        // 不支持复制
+        this.$toast({
+          message: '手机权限不支持复制功能'
+        })
+        console.log('该浏览器不支持自动复制')
+        // 释放内存
+        clipboard.destroy()
+      })
     }
   }
 }
@@ -629,7 +660,7 @@ export default {
           }
         }
         .right {
-          font-family: 'Courier New', Courier, monospace;
+          font-family: "Courier New", Courier, monospace;
           color: #969595;
         }
       }
