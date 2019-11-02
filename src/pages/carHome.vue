@@ -1,5 +1,6 @@
 <template>
   <div class="carHome">
+    <!-- logo图标 -->
     <div class="top">
       <div class="top-left">
         <img class="img1"
@@ -18,11 +19,13 @@
            src="../assets/img/menu.png"
            alt="">
     </div>
+    <!-- 导航栏 -->
     <div class="navigations">
       <div class="nav"
            v-for="(item,index) in nav"
            :key="index">{{ item }}</div>
     </div>
+    <!-- 轮播图 -->
     <van-swipe :autoplay="3000"
                :height="200">
       <van-swipe-item v-for="(image, index) in images"
@@ -31,6 +34,7 @@
       </van-swipe-item>
     </van-swipe>
     <redBgc></redBgc>
+    <!-- 4大优势 -->
     <div class="advantage">
       <div class="blackBox">
         <img src="../assets/img/Productdisplay.png"
@@ -72,6 +76,7 @@
              alt="">
       </div>
     </div>
+    <!-- 成功案例 -->
     <div class="successExample">
       <div class="success-top">
         <span>成功案例</span>
@@ -97,13 +102,82 @@
       </div>
     </div>
     <redBgc></redBgc>
+    <!-- 新车型 -->
+    <div class="newCar">
+      <div class="newCar-text">最新车型</div>
+      <img src="../assets/img/icon3.png"
+           alt=""
+           srcset="">
+    </div>
+    <!-- 左右滑动看车 -->
     <div class="lateral-sliding">
       <div class="lateral-sliding-item"
-           v-for="(item,index) in 3"
+           v-for="(item,index) in images"
            :key="index">
-        <div class="each-img"></div>
+        <img :src="item"
+             class="each-img" />
+        <span class="name">鸿程进口车</span>
       </div>
     </div>
+    <!-- 车型大全 -->
+    <div class="moreModels">
+      <div class="blackBox">
+        <img src="../assets/img/Productdisplay.png"
+             alt=""
+             srcset="">
+        <div class="more">车型大全</div>
+        <div class="whiteBox">品质保障，值得选购</div>
+      </div>
+      <div class="models">
+        <div class="model" v-for="(item,index) in 6" :key="index">
+          <img src="../assets/img/car3.png"
+               alt=""
+               srcset="">
+          <span>鸿程进口车</span>
+        </div>
+      </div>
+      <div class="showMore">
+        查看更多>>
+      </div>
+    </div>
+    <redBgc></redBgc>
+    <!-- 公司简介 -->
+    <div class="companyIntroduction">
+      <div class="company-top">
+        <span>鸿程简介</span>
+        <span class="more">MORE+</span>
+      </div>
+      <div class="redSquare">
+        <img src="../assets/img/redicon.png"
+             alt=""
+             srcset="">
+        <img src="../assets/img/redicon.png"
+             alt=""
+             srcset="">
+      </div>
+      <div class="redBorder">
+        <!-- <img src="../assets/img/car2.png" alt="" srcset=""> -->
+      </div>
+    </div>
+    <!-- 新闻动态 -->
+    <div class="news">
+      <div class="news-top">
+        <span>新闻动态</span>
+        <span class="more">MORE+</span>
+      </div>
+      <div class="redSquare">
+        <img src="../assets/img/redicon.png"
+             alt=""
+             srcset="">
+        <img src="../assets/img/redicon.png"
+             alt=""
+             srcset="">
+      </div>
+      <div class="redBorder">
+      </div>
+    </div>
+    <redBgc></redBgc>
+    <div class="bottom">东莞市鸿程汽车销售有限公司 © COPYRIGHT 2019</div>
   </div>
 </template>
 <script>
@@ -224,12 +298,13 @@ export default {
     .introduction {
       display: flex;
       padding: 0 5px;
+      height: 110px;
       img {
-        height: 100px;
+        height: 100%;
         width: 50%;
       }
       .redBox {
-        height: 100px;
+        height: 100%;
         width: 50%;
         background-color: #dc0a1f;
         color: white;
@@ -292,19 +367,206 @@ export default {
     }
   }
   // 最新车型
+  .newCar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+    .newCar-text {
+      font-weight: 600;
+      font-size: 18px;
+      letter-spacing: 4px;
+    }
+    img {
+      margin-top: 6px;
+      width: 60px;
+    }
+  }
   .lateral-sliding {
     display: flex;
     overflow-y: hidden;
     overflow-x: scroll;
     .lateral-sliding-item {
       display: flex;
+      flex-direction: column;
       margin-right: 8px;
-      background-color: yellow;
+      .name {
+        text-align: center;
+        font-size: 14px;
+      }
       .each-img {
         width: 150px;
         height: 88px;
       }
     }
+  }
+  // 车型大全
+  .moreModels {
+    width: 100%;
+    min-height: 840px;
+    background-image: url("../assets/img/blackBgc.png");
+    background-size: 100% 840px;
+    background-repeat: no-repeat;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    .blackBox {
+      width: 100%;
+      height: 160px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      img {
+        position: absolute;
+        width: 90%;
+        height: 20px;
+        top: 70px;
+        z-index: 1;
+      }
+      .more,
+      .whiteBox {
+        color: white;
+        z-index: 2;
+      }
+      .more {
+        margin-top: 70px;
+        font-size: 18px;
+      }
+      .whiteBox {
+        margin-top: 10px;
+        border: 1px solid white;
+        padding: 6px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+      }
+    }
+    .models {
+      box-sizing: border-box;
+      padding: 0 8px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      .model {
+        background-color: #DEDCDF;
+        width: 48%;
+        height: 160px;
+        box-sizing: border-box;
+        padding: 2px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 18px;
+        img {
+          height: 80%;
+          width: 100%;
+        }
+        span {
+          margin-top: 5px;
+          font-size: 14px;
+        }
+      }
+    }
+    .showMore {
+      width: 96%;
+      height: 40px;
+      background-color: #dc0a1f;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      border-radius: 6px;
+    }
+  }
+  // 公司简介
+  .companyIntroduction {
+    margin: 40px 0 40px 0;
+    padding: 0 10px;
+    .company-top {
+      height: 40px;
+      width: 100%;
+      background-color: #dc0a1f;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 10px;
+      color: white;
+      border-radius: 8px;
+      .more {
+        font-size: 13px;
+      }
+    }
+    .redSquare {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 70px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .redBorder {
+      border: 2px solid #dc0a1f;
+      min-height: 280px;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+  // 公司简介
+  .news {
+    margin: 40px 0 40px 0;
+    padding: 0 10px;
+    .news-top {
+      height: 40px;
+      width: 100%;
+      background-color: #dc0a1f;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 10px;
+      color: white;
+      border-radius: 8px;
+      .more {
+        font-size: 13px;
+      }
+    }
+    .redSquare {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      box-sizing: border-box;
+      padding: 0 70px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .redBorder {
+      border: 2px solid #dc0a1f;
+      min-height: 280px;
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  }
+  // 底部
+  .bottom {
+    background-color: #F7F7F7;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #8B8B8B;
+    font-size: 13px;
+    margin-bottom: 60px;
   }
 }
 </style>
