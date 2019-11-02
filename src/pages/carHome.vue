@@ -189,7 +189,7 @@
               <img src="../assets/img/triangle.png"
                    alt="">
             </span>
-            <span>二手车如何挑选发动机?</span>
+            <span class="title">二手车如何挑选发动机?</span>
           </div>
           <div class="right">[2019-10-22]</div>
         </div>
@@ -204,7 +204,7 @@
              srcset="">
         <span>拨打电话</span>
       </div>
-      <div class="fixed-box" 
+      <div class="fixed-box"
            @click="copy"
            :data-clipboard-text="wechatNum">
         <img src="../assets/img/wechat.png"
@@ -309,8 +309,9 @@ export default {
     display: flex;
     flex-wrap: wrap;
     .nav {
+      box-sizing: border-box;
       height: 40px;
-      width: 24.69%;
+      width: 25%;
       background-color: black;
       color: white;
       line-height: 40px;
@@ -592,7 +593,7 @@ export default {
       }
       span {
         font-family: "Courier New", Courier, monospace;
-        font-size: 11px;
+        font-size: 0.8rem;
         letter-spacing: 2px;
       }
     }
@@ -643,6 +644,7 @@ export default {
           display: flex;
           align-items: center;
           font-size: 15px;
+          width: 60%;
           .redBox {
             display: block;
             background-color: #dc0a1f;
@@ -658,10 +660,19 @@ export default {
               height: 8px;
             }
           }
+          .title {
+            width: 90%;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            font-size: 0.8rem;
+          }
         }
         .right {
           font-family: "Courier New", Courier, monospace;
           color: #969595;
+          white-space: nowrap;
+          font-size: 0.8rem;
         }
       }
     }
